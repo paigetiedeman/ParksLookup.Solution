@@ -7,7 +7,7 @@
 
 #### _By: Paige Tiedeman_
 
-#### This is a C# localhost API that allows the user to GET,PUT, POST, and DELETE data from their MySQL database using Postman.
+#### This is a C# localhost API that allows the user to GET, PUT, POST, and DELETE data from their MySQL database using Postman.
 
 </div>
 
@@ -19,6 +19,7 @@
 * ASP.NET Core
 * Entity Framework Core
 * MySql
+* MySQL Workbench
 * Postman
 * Swagger
 * VS Code
@@ -66,7 +67,7 @@ This API is created with RESTful principles to store NAtional Park information w
 * If Migrations folder is not present run `$ dotnet ef migrations add Initial` to add Migrations folder
 * Then run `$ dotnet ef database update` to create the schema
 * Run `$ dotnet run` to start the live server at http://localhost:5000 
-* This API uses [Swagger documentation](https://swagger.io/tools/swagger-ui/)
+* This API uses [Swagger Documentation](https://swagger.io/tools/swagger-ui/)
   - Go to https://localhost:5001/index.html to access
   - NOTE: the program must be running to access Swagger
   - To Test a query, find the tab for the query type and click the "Try It Out" button located in the top right corner of the card.
@@ -102,7 +103,7 @@ https://localhost:5000/api/Parks/?state=WA
 ```
   {
     "parkId": 1,
-    "parkName": "Mount Ranier National Park",
+    "parkName": "Mount Rainier National Park",
     "state": "WA",
     "rating": 9,
     "highlight": "Paradise, hiking",
