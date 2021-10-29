@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace ParksLookup
+namespace ParksLookup.Models
 {
   public class ParksLookupContext : DbContext
   {
