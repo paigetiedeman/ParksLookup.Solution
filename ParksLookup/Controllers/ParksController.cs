@@ -54,7 +54,7 @@ namespace ParksLookup.Controllers
       return park;
     }
 
-    [HttpPut]
+    [HttpPut("{id}")]
     public async Task<ActionResult> Put(int id, Park park)
     {
       if(id != park.ParkId)
@@ -102,7 +102,7 @@ namespace ParksLookup.Controllers
       await _db.SaveChangesAsync();
       return NoContent();
     }
-
+    
     private bool ParkExists(int id)
     {
       return _db.Parks.Any(e => e.ParkId == id);
