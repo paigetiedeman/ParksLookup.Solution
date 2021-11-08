@@ -65,7 +65,7 @@ namespace ParksLookup.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Park park)
+    public async Task<ActionResult> Put(int id, Park park)
     {
       if (id != park.ParkId)
       {
@@ -104,6 +104,7 @@ namespace ParksLookup.Controllers
       return NoContent();
     }
 
+    [ApiExplorerSettings(IgnoreApi = true)]
     private bool ParkExists(int id)
     {
       return _db.Parks.Any(e => e.ParkId == id);
