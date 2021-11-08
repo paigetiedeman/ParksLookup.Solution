@@ -25,7 +25,7 @@ public IConfiguration Configuration { get; }
     {
       services.AddDbContext<ParksLookupContext>(opt =>
       opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
-            services.AddControllers();
+      services.AddControllers();
       services.AddSwaggerGen(c =>
             {
               c.SwaggerDoc("v1", new OpenApiInfo
@@ -53,13 +53,14 @@ public IConfiguration Configuration { get; }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                  c.SwaggerEndpoint("/swagger/v1/swagger.json", "ParksLookup v1");
-                  c.RoutePrefix = string.Empty;
-                });
             }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+              c.SwaggerEndpoint("/swagger/v1/swagger.json", "ParksLookup v1");
+              c.RoutePrefix = string.Empty;
+            });
 
             // app.UseHttpsRedirection();
 

@@ -8,8 +8,8 @@ using ParksLookup.Models;
 namespace ParksLookup.Migrations
 {
     [DbContext(typeof(ParksLookupContext))]
-    [Migration("20211029180442_Initial")]
-    partial class Initial
+    [Migration("20211108024746_Update")]
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,8 @@ namespace ParksLookup.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("State")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2) CHARACTER SET utf8mb4");
 
                     b.Property<bool>("Visited")
                         .HasColumnType("tinyint(1)");

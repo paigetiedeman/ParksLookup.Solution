@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,10 +55,19 @@ namespace ParksLookup.Controllers
       return park;
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult> Put(int id, Park park)
+    [HttpPost]
+    public async Task<ActionResult<Park>> Post(Park park)
     {
-      if(id != park.ParkId)
+      _db.Parks.Add(park);
+      await _db.SaveChangesAsync();
+
+      return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Park park)
+    {
+      if (id != park.ParkId)
       {
         return BadRequest();
       }
@@ -67,7 +77,7 @@ namespace ParksLookup.Controllers
       {
         await _db.SaveChangesAsync();
       }
-      catch(DbUpdateConcurrencyException)
+      catch (DbUpdateConcurrencyException)
       {
         if(!ParkExists(id))
         {
@@ -81,17 +91,8 @@ namespace ParksLookup.Controllers
       return NoContent();
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Park>> Post(Park park)
-    {
-      _db.Parks.Add(park);
-      await _db.SaveChangesAsync();
-
-      return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
-    }
-
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteBook(int id)
+    public async Task<ActionResult> DeletePark(int id)
     {
       var park = await _db.Parks.FindAsync(id);
       if(park == null)
@@ -102,7 +103,7 @@ namespace ParksLookup.Controllers
       await _db.SaveChangesAsync();
       return NoContent();
     }
-    
+
     private bool ParkExists(int id)
     {
       return _db.Parks.Any(e => e.ParkId == id);
